@@ -50,35 +50,31 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   flex: 2,
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPressed: () {
                       setState(() {
                         changeColor(Gender.male);
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: maleCardColor,
-                      cardChild: CardContent(
-                        cardIcon: FontAwesomeIcons.mars,
-                        cardText: 'Male',
-                      ),
+                    cardColor: maleCardColor,
+                    cardChild: CardContent(
+                      cardIcon: FontAwesomeIcons.mars,
+                      cardText: 'Male',
                     ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPressed: () {
                       setState(() {
                         changeColor(Gender.female);
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: femaleCardColor,
-                      cardChild: CardContent(
-                        cardIcon: FontAwesomeIcons.venus,
-                        cardText: 'Female',
-                      ),
+                    cardColor: femaleCardColor,
+                    cardChild: CardContent(
+                      cardIcon: FontAwesomeIcons.venus,
+                      cardText: 'Female',
                     ),
                   ),
                 )
