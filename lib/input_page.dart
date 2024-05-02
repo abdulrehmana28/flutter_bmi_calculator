@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bmi_calculator/CardContent.dart';
-import 'package:flutter_bmi_calculator/ReusableCard.dart';
+import 'package:flutter_bmi_calculator/card_content.dart';
+import 'package:flutter_bmi_calculator/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const bottomButtonHeight = 70.0;
-const bottomButtonColor = Color(0xFFEB1555);
-const activeCardColor = Color(0xFF1d1e33);
-const inActiveCardColor = Color(0xffe111328);
-const cardTextColor = Color(0xFF8D8E98);
+import 'constants.dart';
 
 // can't create enums inside a class
 enum Gender {
@@ -21,16 +17,16 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inActiveCardColor;
-  Color femaleCardColor = inActiveCardColor;
+  Color maleCardColor = kInActiveCardColor;
+  Color femaleCardColor = kInActiveCardColor;
 
   void changeColor(Gender selectedGender) {
     selectedGender == Gender.male
-        ? maleCardColor = activeCardColor
-        : maleCardColor = inActiveCardColor;
+        ? maleCardColor = kActiveCardColor
+        : maleCardColor = kInActiveCardColor;
     selectedGender == Gender.female
-        ? femaleCardColor = activeCardColor
-        : femaleCardColor = inActiveCardColor;
+        ? femaleCardColor = kActiveCardColor
+        : femaleCardColor = kInActiveCardColor;
   }
 
   @override
@@ -87,7 +83,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   flex: 2,
                   child: ReusableCard(
-                    cardColor: activeCardColor,
+                    cardColor: kActiveCardColor,
+                    cardChild: CardContent(cardText: 'Height'),
                   ),
                 )
               ],
@@ -98,7 +95,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardColor: activeCardColor,
+                    cardColor: kActiveCardColor,
                   ),
                 ),
                 Expanded(
@@ -106,7 +103,7 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       Expanded(
                         child: ReusableCard(
-                          cardColor: activeCardColor,
+                          cardColor: kActiveCardColor,
                         ),
                       ),
                     ],
@@ -116,9 +113,9 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: bottomButtonColor,
+            color: kBottomButtonColor,
             margin: const EdgeInsets.only(top: 10.0),
-            height: bottomButtonHeight,
+            height: kBottomButtonHeight,
             width: double.infinity,
           ),
         ],

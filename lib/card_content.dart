@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'input_page.dart';
+import 'constants.dart';
 
 class CardContent extends StatelessWidget {
-  CardContent({required this.cardIcon, required this.cardText});
+  CardContent({this.cardIcon, required this.cardText});
 
-  final IconData cardIcon;
+  final IconData? cardIcon;
   final String cardText;
 
   @override
@@ -22,7 +22,7 @@ class CardContent extends StatelessWidget {
         ),
         Text(
           cardText,
-          style: const TextStyle(color: cardTextColor, fontSize: 20.0),
+          style: const TextStyle(color: kCardTextColor, fontSize: 20.0),
         ),
       ],
     );
