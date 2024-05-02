@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'input_page.dart';
 
+const mainColor = Color(0xFF0A0E21);
+
 void main() => runApp(const BMICalculator());
 
 class BMICalculator extends StatelessWidget {
@@ -11,11 +13,11 @@ class BMICalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: const Color(0xFF0A0E21),
+        primaryColor: mainColor,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF0A0E21),
+          backgroundColor: mainColor,
         ),
-        scaffoldBackgroundColor: const Color(0xFF0A0E21),
+        scaffoldBackgroundColor: mainColor,
       ),
       home: InputPage(),
     );

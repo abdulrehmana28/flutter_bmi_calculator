@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi_calculator/CardContent.dart';
+import 'package:flutter_bmi_calculator/ReusableCard.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const bottomButtonHeight = 70.0;
 const bottomButtonColor = Color(0xFFEB1555);
 const activeCardColor = Color(0xFF1d1e33);
+const cardTextColor = Color(0xFF8D8E98);
 
 class InputPage extends StatefulWidget {
   @override
@@ -29,12 +33,20 @@ class _InputPageState extends State<InputPage> {
                   flex: 2,
                   child: ReusableCard(
                     cardColor: activeCardColor,
+                    cardChild: CardContent(
+                      cardIcon: FontAwesomeIcons.mars,
+                      cardText: 'Male',
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 2,
                   child: ReusableCard(
                     cardColor: activeCardColor,
+                    cardChild: CardContent(
+                      cardIcon: FontAwesomeIcons.venus,
+                      cardText: 'Female',
+                    ),
                   ),
                 )
               ],
@@ -94,20 +106,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.cardColor});
-
-  final Color cardColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0), color: cardColor),
-    );
-  }
-}
-
-// const Color(0xFF1d1e33),
