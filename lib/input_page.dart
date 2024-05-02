@@ -19,6 +19,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleCardColor = kInActiveCardColor;
   Color femaleCardColor = kInActiveCardColor;
+  int userHeight = 180;
 
   void changeColor(Gender selectedGender) {
     selectedGender == Gender.male
@@ -84,7 +85,39 @@ class _InputPageState extends State<InputPage> {
                   flex: 2,
                   child: ReusableCard(
                     cardColor: kActiveCardColor,
-                    cardChild: CardContent(cardText: 'Height'),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Height',
+                          style:
+                              TextStyle(color: kCardTextColor, fontSize: 20.0),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(userHeight.toString(), style: kNumberText),
+                            const Text(
+                              'cm',
+                              style: TextStyle(
+                                  color: kCardTextColor, fontSize: 20.0),
+                            ),
+                          ],
+                        ),
+                        Slider(
+                            value: userHeight.toDouble(),
+                            min: 150.0,
+                            max: 220.0,
+                            activeColor: kBottomButtonColor,
+                            onChanged: (double newValue) {
+                              setState(() {
+                                userHeight = newValue.round();
+                              });
+                            }),
+                      ],
+                    ),
                   ),
                 )
               ],
