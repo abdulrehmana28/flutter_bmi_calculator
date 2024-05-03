@@ -106,16 +106,7 @@ class _InputPageState extends State<InputPage> {
                             ),
                           ],
                         ),
-                        Slider(
-                            value: userHeight.toDouble(),
-                            min: 150.0,
-                            max: 220.0,
-                            activeColor: kBottomButtonColor,
-                            onChanged: (double newValue) {
-                              setState(() {
-                                userHeight = newValue.round();
-                              });
-                            }),
+                        reusableSlider(),
                       ],
                     ),
                   ),
@@ -162,6 +153,30 @@ class _InputPageState extends State<InputPage> {
           child: const Icon(Icons.add),
         ),
       ), */
+    );
+  }
+
+  SliderTheme reusableSlider() {
+    return SliderTheme(
+      data: const SliderThemeData(
+        activeTrackColor: Colors.white,
+        thumbColor: kBottomButtonColor,
+        overlayColor: Color(0x29eb1555),
+        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+        overlayShape: RoundSliderOverlayShape(overlayRadius: 30),
+      ),
+      child: Slider(
+        value: userHeight.toDouble(),
+        min: 150.0,
+        max: 220.0,
+        onChanged: (double newValue) {
+          setState(
+            () {
+              userHeight = newValue.round();
+            },
+          );
+        },
+      ),
     );
   }
 }
