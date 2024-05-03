@@ -20,6 +20,8 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = kInActiveCardColor;
   Color femaleCardColor = kInActiveCardColor;
   int userHeight = 180;
+  int userWeight = 60;
+  int userAge = 25;
 
   void changeColor(Gender selectedGender) {
     selectedGender == Gender.male
@@ -28,6 +30,30 @@ class _InputPageState extends State<InputPage> {
     selectedGender == Gender.female
         ? femaleCardColor = kActiveCardColor
         : femaleCardColor = kInActiveCardColor;
+  }
+
+  void plusWeight() {
+    setState(() {
+      userWeight++;
+    });
+  }
+
+  void minusWeight() {
+    setState(() {
+      userWeight--;
+    });
+  }
+
+  void plusAge() {
+    setState(() {
+      userAge++;
+    });
+  }
+
+  void minusAge() {
+    setState(() {
+      userAge--;
+    });
   }
 
   @override
@@ -120,6 +146,33 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     cardColor: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Weight',
+                          style:
+                              TextStyle(color: kCardTextColor, fontSize: 20.0),
+                        ),
+                        Text(userWeight.toString(), style: kNumberText),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RawRoundButton(
+                              childIcon: FontAwesomeIcons.minus,
+                              onPress: minusWeight,
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RawRoundButton(
+                              childIcon: FontAwesomeIcons.plus,
+                              onPress: plusWeight,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -128,6 +181,33 @@ class _InputPageState extends State<InputPage> {
                       Expanded(
                         child: ReusableCard(
                           cardColor: kActiveCardColor,
+                          cardChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Age',
+                                style: TextStyle(
+                                    color: kCardTextColor, fontSize: 20.0),
+                              ),
+                              Text(userAge.toString(), style: kNumberText),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RawRoundButton(
+                                    childIcon: FontAwesomeIcons.minus,
+                                    onPress: minusAge,
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  RawRoundButton(
+                                    childIcon: FontAwesomeIcons.plus,
+                                    onPress: plusAge,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -176,6 +256,28 @@ class _InputPageState extends State<InputPage> {
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class RawRoundButton extends StatelessWidget {
+  RawRoundButton({required this.childIcon, required this.onPress});
+
+  final IconData childIcon;
+  final VoidCallback onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPress,
+      shape: CircleBorder(),
+      fillColor: Color(0xff4c4f5e),
+      elevation: 5.0,
+      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      child: Icon(
+        childIcon,
+        color: Colors.white,
       ),
     );
   }
