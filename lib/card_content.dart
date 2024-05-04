@@ -25,7 +25,7 @@ class CardContent extends StatelessWidget {
         ),
         Text(
           cardText,
-          style: const TextStyle(color: kCardTextColor, fontSize: 20.0),
+          style: kCardTextStyle,
         ),
       ],
     );

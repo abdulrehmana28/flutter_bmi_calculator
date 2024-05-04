@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_calculator/card_content.dart';
+import 'package:flutter_bmi_calculator/result_page.dart';
 import 'package:flutter_bmi_calculator/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'bottom_button.dart';
 import 'constants.dart';
+import 'raw_round_button.dart';
 
 // can't create enums inside a class
 enum Gender {
@@ -124,7 +127,8 @@ class _InputPageState extends State<InputPage> {
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text(userHeight.toString(), style: kNumberText),
+                            Text(userHeight.toString(),
+                                style: kNumberTextStyle),
                             const Text(
                               'cm',
                               style: TextStyle(
@@ -154,7 +158,7 @@ class _InputPageState extends State<InputPage> {
                           style:
                               TextStyle(color: kCardTextColor, fontSize: 20.0),
                         ),
-                        Text(userWeight.toString(), style: kNumberText),
+                        Text(userWeight.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -189,7 +193,7 @@ class _InputPageState extends State<InputPage> {
                                 style: TextStyle(
                                     color: kCardTextColor, fontSize: 20.0),
                               ),
-                              Text(userAge.toString(), style: kNumberText),
+                              Text(userAge.toString(), style: kNumberTextStyle),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -216,11 +220,16 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomButtonColor,
-            margin: const EdgeInsets.only(top: 10.0),
-            height: kBottomButtonHeight,
-            width: double.infinity,
+          BottomButton(
+            buttonText: 'calculate',
+            onClick: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -256,28 +265,6 @@ class _InputPageState extends State<InputPage> {
             },
           );
         },
-      ),
-    );
-  }
-}
-
-class RawRoundButton extends StatelessWidget {
-  RawRoundButton({required this.childIcon, required this.onPress});
-
-  final IconData childIcon;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPress,
-      shape: CircleBorder(),
-      fillColor: Color(0xff4c4f5e),
-      elevation: 5.0,
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      child: Icon(
-        childIcon,
-        color: Colors.white,
       ),
     );
   }
