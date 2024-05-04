@@ -5,6 +5,7 @@ import 'package:flutter_bmi_calculator/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'bottom_button.dart';
+import 'calculateFuncationality.dart';
 import 'constants.dart';
 import 'raw_round_button.dart';
 
@@ -223,10 +224,16 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonText: 'calculate',
             onClick: () {
+              CalculateFuncationality calc = CalculateFuncationality(
+                  height: userHeight, weight: userWeight);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultPage(),
+                  builder: (context) => ResultPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResultText(),
+                    interpretation: calc.getInterpretation(),
+                  ),
                 ),
               );
             },

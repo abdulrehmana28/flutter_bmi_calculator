@@ -5,7 +5,14 @@ import 'bottom_button.dart';
 import 'constants.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+  ResultPage(
+      {required this.bmiResult,
+      required this.resultText,
+      required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +43,15 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Normal',
+                    resultText,
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.5',
+                    bmiResult,
                     style: kBmiTextStyle,
                   ),
                   Text(
-                    'Your BMI result is low, eat more',
+                    interpretation,
                     style: kBmiInterpretationTextStyle,
                     textAlign: TextAlign.center,
                   ),
