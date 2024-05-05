@@ -4,6 +4,7 @@ import 'package:flutter_bmi_calculator/components/reusable_card.dart';
 import '../components/bottom_button.dart';
 import '../constants.dart';
 import '../database_helper.dart';
+import 'SavedDataPage.dart';
 
 class ResultPage extends StatelessWidget {
   ResultPage(
