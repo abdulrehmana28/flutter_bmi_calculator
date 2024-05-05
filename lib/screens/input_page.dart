@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bmi_calculator/card_content.dart';
-import 'package:flutter_bmi_calculator/result_page.dart';
-import 'package:flutter_bmi_calculator/reusable_card.dart';
+import 'package:flutter_bmi_calculator/components/card_content.dart';
+import 'package:flutter_bmi_calculator/components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'bottom_button.dart';
-import 'calculateFuncationality.dart';
-import 'constants.dart';
-import 'raw_round_button.dart';
+import '../calculateFuncationality.dart';
+import '../components/bottom_button.dart';
+import '../components/raw_round_button.dart';
+import '../constants.dart';
+import 'result_page.dart';
 
 // can't create enums inside a class
 enum Gender {
