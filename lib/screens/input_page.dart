@@ -36,6 +36,18 @@ class _InputPageState extends State<InputPage> {
         : femaleCardColor = kInActiveCardColor;
   }
 
+  String whatGender() {
+    if (maleCardColor == kActiveCardColor &&
+        femaleCardColor == kInActiveCardColor) {
+      return 'male';
+    } else if (femaleCardColor == kActiveCardColor &&
+        maleCardColor == kInActiveCardColor) {
+      return 'female';
+    } else {
+      return 'Unknown';
+    }
+  }
+
   void plusWeight() {
     setState(() {
       userWeight++;
@@ -233,6 +245,10 @@ class _InputPageState extends State<InputPage> {
                     bmiResult: calc.calculateBMI(),
                     resultText: calc.getResultText(),
                     interpretation: calc.getInterpretation(),
+                    age: userAge.toString(),
+                    height: userHeight.toString(),
+                    weight: userWeight.toString(),
+                    gender: whatGender().toString(),
                   ),
                 ),
               );
