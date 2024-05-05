@@ -1,5 +1,5 @@
 name: flutter_bmi_calculator
-description: "Simple BMI app"
+description: "Simple BMI app with SQL Lite to store user data locally"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
