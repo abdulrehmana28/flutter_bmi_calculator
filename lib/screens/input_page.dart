@@ -256,15 +256,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-
-      // Custom theme for a specific widget
-      /* floatingActionButton: Theme(
-        data: ThemeData.dark(),
-        child: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
-      ), */
     );
   }
 
