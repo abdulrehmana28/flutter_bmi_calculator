@@ -25,16 +25,16 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY,
         name TEXT,
         gender TEXT,
-        age INTEGER,
-        height REAL,
-        weight REAL,
+        age TEXT,
+        height TEXT,
+        weight TEXT,
         bmi REAL
       )
     ''');
   }
 
-  Future<int> insertUser(String name, String gender, int age, double height,
-      double weight, double bmi) async {
+  Future<int> insertUser(String name, String gender, String age, String height,
+      String weight, String bmi) async {
     final db = await database;
     return await db!.insert(tableName, {
       'name': name,

@@ -3,6 +3,7 @@ import 'package:flutter_bmi_calculator/components/reusable_card.dart';
 
 import '../components/bottom_button.dart';
 import '../constants.dart';
+import '../database_helper.dart';
 
 class ResultPage extends StatelessWidget {
   ResultPage(
@@ -66,7 +67,38 @@ class ResultPage extends StatelessWidget {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  Text(gender),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final dbHelper = DatabaseHelper();
+                      final name = await showDialog<String>(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Enter your name'),
+                            content: TextField(
+                              decoration: InputDecoration(labelText: 'Name'),
+                            ),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'John Doe');
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      await dbHelper.insertUser(
+                          name!, gender, age, height, weight, bmiResult);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SavedDataPage()),
+                      );
+                    },
+                    child: Text('Save Data'),
+                  ),
                 ],
               ),
             ),
