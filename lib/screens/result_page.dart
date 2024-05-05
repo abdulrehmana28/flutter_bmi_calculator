@@ -36,8 +36,8 @@ class ResultPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              child: Center(
-                child: const Text(
+              child: const Center(
+                child: Text(
                   'Result',
                   style: kTitleTextStyle,
                 ),
@@ -68,37 +68,74 @@ class ResultPage extends StatelessWidget {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final dbHelper = DatabaseHelper();
-                      final name = await showDialog<String>(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Enter your name'),
-                            content: TextField(
-                              decoration: InputDecoration(labelText: 'Name'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SavedDataPage(),
                             ),
-                            actions: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pop(context, 'John Doe');
-                                },
-                                child: Text('OK'),
-                              ),
-                            ],
                           );
                         },
-                      );
-                      await dbHelper.insertUser(
-                          name!, gender, age, height, weight, bmiResult);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SavedDataPage()),
-                      );
-                    },
-                    child: Text('Save Data'),
+                        child: const Text('View Saved'),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(kActiveCardColor),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          final dbHelper = DatabaseHelper();
+                          final nameController = TextEditingController();
+                          await showDialog<String>(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Enter your name'),
+                                content: TextFormField(
+                                  controller: nameController,
+                                  decoration:
+                                      const InputDecoration(labelText: 'Name'),
+                                  validator: (value) {
+                                    if (value?.isEmpty ?? true) {
+                                      return 'Please enter your name';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(
+                                          context, nameController.text);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          await dbHelper.insertUser(nameController.text, gender,
+                              age, height, weight, bmiResult);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SavedDataPage()),
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(kActiveCardColor),
+                        ),
+                        child: const Text('Save Data'),
+                      ),
+                    ],
                   ),
                 ],
               ),

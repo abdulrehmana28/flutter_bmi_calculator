@@ -14,7 +14,7 @@ class CalculateFuncationality {
 
   String getResultText() {
     if (_bmi >= 25) {
-      return 'You Overweight';
+      return 'You are Overweight';
     } else if (_bmi > 18.5) {
       return 'Normal';
     } else {
